@@ -13,6 +13,7 @@ import { CertificateOfNonManipulationTemplates } from "./CertificateOfNonManipul
 import { BrochureTemplates } from "./Brochure";
 import { BillOfLadingV1BimcoStandardTemplates } from "./BillOfLadingBimcoStandard";
 import { WarehouseReceiptTemplates } from "./WarehouseReceipt";
+import { EBL_DCSATemplates } from "./EBL_DCSA";
 
 export const registry: TemplateRegistry<any> = {
   BILL_OF_LADING: BillOfLadingTemplates,
@@ -29,4 +30,5 @@ export const registry: TemplateRegistry<any> = {
   CERTIFICATE_OF_NON_MANIPULATION: CertificateOfNonManipulationTemplates,
   W3C_BROCHURE: BrochureTemplates,
   WAREHOUSE_RECEIPT: WarehouseReceiptTemplates,
+  EBL_DCSA: EBL_DCSATemplates,
 };

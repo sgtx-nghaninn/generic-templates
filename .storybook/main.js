@@ -1,4 +1,5 @@
 const path = require("path");
+require('@storybook/addon-postcss')
 const toPath = (_path) => path.join(process.cwd(), _path);
 
 module.exports = {
