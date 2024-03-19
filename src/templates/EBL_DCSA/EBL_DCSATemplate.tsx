@@ -22,7 +22,7 @@ const SingleValueField = ({ identifier, schema, payload, index }: {
   return <div className="flex-1 border-black border-t border-r h-100% last:border-r-0" key={`document-row-${index}`}>
     <div className="p-2">
       {smallText(schema?.[identifier]?.title)}
-      <div className="break-words">{`${(payload as any)[identifier]}`}</div>
+      <p style={{ wordBreak: "break-word" }}>{`${(payload as any)[identifier]}`}</p>
     </div>
   </div>
 }
@@ -254,13 +254,15 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                     return <>
                       <SubTitle3 title={`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.title}  #${index + 1}`} />
                       <div className="flex">
-                        {/* 'shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit' */}
-                        {['shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit']?.map((item, index) => (
-                          <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties} payload={cargo_item} />
-                        ))}
+                        <div className="flex-1 flex border-black border-r">
+                          {/* 'shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit' */}
+                          {['shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit']?.map((item, index) => (
+                            <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties} payload={cargo_item} />
+                          ))}
+                        </div>
 
                         {/* Custom Reference */}
-                        <div className="flex-2 flex flex-col border-black border-t">
+                        <div className="flex-1 flex flex-col border-black border-t">
                           <div className="p-2">
                             {smallStrongText(`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties.customs_references.title}`)}
                           </div>
@@ -477,7 +479,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                     </div>
 
                                     {/* Limits */}
-                                    <div className="flex-3 flex flex-col border-black border-t">
+                                    <div className="flex-1 flex flex-col border-black border-t">
                                       <div className="p-2">
                                         {smallStrongText(`${EBL_DCSAJsonSchmea.properties
                                           .dcsa_ebl_document.items.properties
@@ -814,75 +816,43 @@ const Section2 = (document: EBL_DCSADocument): JSX.Element => {
     }]
   }];
 
-  return <>
-    {dcsa_ebl_issue_to?.map(({ platform_nm, legal_nm, registration_no, registration_loc, tax_ref, party_codes }, index) => (
-      <div className="border-black border-t border-l border-r last:border-b-2">
+  return <div className="border-black border-2">
+    {dcsa_ebl_issue_to?.map((payload, index) => {
+      return <>
         <div className="flex">
-          <div className="w-1/8 border-black border-t border-l border-r">
-            <div className="p-2">
-              {smallText("Send to Platform")}
-              <div>{platform_nm}</div>
-            </div>
+          <div className="flex-1 flex border-black border-r">
+            {/* platform_nm, legal_nm, registration_no, registration_loc, tax_ref */}
+            {['platform_nm', 'legal_nm', 'registration_no', 'registration_loc', 'tax_ref']?.map((item, index) => (
+              <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_issue_to.items.properties} payload={payload} />
+            ))}
           </div>
-          <div className="w-1/8 border-black border-t border-l border-r">
+
+          {/* party_codes */}
+          <div className="flex-1 flex flex-col border-black border-t">
             <div className="p-2">
-              {smallText("Legal Name")}
-              <div>{legal_nm}</div>
+              {smallStrongText(`${EBL_DCSAJsonSchmea.properties
+                .dcsa_ebl_issue_to.items.properties
+                .party_codes
+                .title}`)}
             </div>
-          </div>
-          <div className="w-1/8 border-black border-t border-l border-r">
-            <div className="p-2">
-              {smallText("Registration Number")}
-              <div>{registration_no}</div>
-            </div>
-          </div>
-          <div className="w-1/8 border-black border-t border-l border-r">
-            <div className="p-2">
-              {smallText("Location of Registration")}
-              <div>{registration_loc}</div>
-            </div>
-          </div>
-          <div className="w-1/8 border-black border-t border-l border-r">
-            <div className="p-2">
-              {smallText("Tax Reference")}
-              <div>{tax_ref}</div>
-            </div>
-          </div>
-          <div className="flex-auto border-black border-t border-l border-r">
-            <div>
-              <div className="p-2">
-                {smallStrongText("Party Codes")}
-              </div>
-              <div>
-                {party_codes?.map(({ party_code, code_provider, code_name }, index) => (
-                  <div className="flex" key={index}>
-                    <div className="flex-1 border-black border-t border-r">
-                      <div className="p-2">
-                        {smallText("Party Code")}
-                        <div>{party_code}</div>
-                      </div>
-                    </div>
-                    <div className="flex-1 border-black border-t border-r">
-                      <div className="p-2">
-                        {smallText("Code List Provider")}
-                        <div>{code_provider}</div>
-                      </div>
-                    </div>
-                    <div className="flex-1 border-black border-t">
-                      <div className="p-2">
-                        {smallText("Code List Name")}
-                        <div>{code_name}</div>
-                      </div>
-                    </div>
-                  </div>
+            {payload?.party_codes?.map((payload, index) => {
+              return <div className="flex flex-1">
+                {['party_code', 'code_provider', 'code_name']?.map((item, index) => (
+                  <SingleValueField
+                    identifier={item}
+                    schema={EBL_DCSAJsonSchmea.properties
+                      .dcsa_ebl_issue_to.items.properties
+                      .party_codes
+                      .items.properties}
+                    payload={payload} />
                 ))}
               </div>
-            </div>
+            })}
           </div>
         </div>
-      </div>
-    ))}
-  </>;
+      </>
+    })}
+  </div>;
 };
 
 const Section1 = (document: EBL_DCSADocument): JSX.Element => {
@@ -914,13 +884,13 @@ const Section1 = (document: EBL_DCSADocument): JSX.Element => {
             <div className="w-1/3 border-black border">
               <div className="p-2 border-black border-b-2">
                 Jurisdiction
-                <p data-testid="blNumber">
+                <p>
                   <strong className="break-all">{dcsa_ebl_jurisdiction}</strong>
                 </p>
               </div>
               <div className="p-2">
                 Seat
-                <p data-testid="blNumber">
+                <p>
                   <strong className="break-all">{dcsa_ebl_seat}</strong>
                 </p>
               </div>
