@@ -28,7 +28,7 @@
     "prep": "run-s lint:fix check-types test",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && npm-run-all build:css:renderer -p 'build:css:renderer -- --watch' storybook:start",
     "storybook:start": "start-storybook -s ./ -p 6006",
-    "storybook:build": "npm run build:css:renderer && sleep 2 && build-storybook -o docs",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && npm run build:css:renderer && sleep 2 && build-storybook -o docs",
     "test": "jest --ci",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch"

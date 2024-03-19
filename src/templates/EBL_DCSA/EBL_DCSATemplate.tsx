@@ -17,7 +17,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
   const carrierName = '' //document.carrierName;
   const { dcsa_ebl_document } = document ?? { dcsa_ebl_document: [] };
   return <>
-    {dcsa_ebl_document?.map(({ bol_ref, shipping_ref, status, shipped_onboard, freight_payment_cd, origin_charges_cd, destination_charges_cd, to_order, place_of_receipt, port_of_load, port_of_discharge, place_of_delivery, shipped_onboard_date, terms_and_conditions, origin_receipt_type, destination_delivery_type, origin_cargo_movement_type, destination_cargo_movement_type, issue_date, received_shipment_date, service_contract_ref, contract_quotation_ref, declared_value, declared_currency, carrier_cd, carrier_cd_provider, carrier_clause }, index) => (
+    {dcsa_ebl_document?.map(({ bol_ref, shipping_ref, status, shipped_onboard, freight_payment_cd, origin_charges_cd, destination_charges_cd, to_order, place_of_receipt, port_of_load, port_of_discharge, place_of_delivery, shipped_onboard_date, terms_and_conditions, origin_receipt_type, destination_delivery_type, origin_cargo_movement_type, destination_cargo_movement_type, issue_date, received_shipment_date, service_contract_ref, contract_quotation_ref, declared_value, declared_currency, carrier_cd, carrier_cd_provider, carrier_clause, issuing_party }, index) => (
       <div className="border-black border">
         Documents
         <div>
@@ -241,11 +241,98 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
             </div>
             <div className="w-1/4 border-black border">
               <div className="p-2 h-24">
-                {smallText("Destination Charges Payment Term Code")}
+                {smallText("Carrier Code List Provider")}
                 <div>{carrier_clause}</div>
               </div>
             </div>
           </div>
+
+          <div className="flex-auto border-black border-t border-l border-r">
+            <div>
+              <div className="p-2">
+                {smallText("Issuing Party")}
+              </div>
+              <div>
+                {issuing_party?.map(({ name, address, country, contact_nm, contact_type, contact_details, identifying_code, code_provider, code_name, tax_ref_type, tax_country_cd, tax_ref }, index) => (
+                  <div className="flex" key={index}>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Name")}
+                        <div>{name}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party's Address")}
+                        <div>{address}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party's Country")}
+                        <div>{country}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Contact Name")}
+                        <div>{contact_nm}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Contact Type")}
+                        <div>{contact_type}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Contact Details")}
+                        <div>{contact_details}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Identifying Code")}
+                        <div>{identifying_code}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Identifying Code List Provider")}
+                        <div>{code_provider}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Issuing Party Identifying Code List Name")}
+                        <div>{code_name}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Tax and Legal Reference Type")}
+                        <div>{tax_ref_type}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t border-r">
+                      <div className="p-2">
+                        {smallText("Tax and Legal Reference Country Code")}
+                        <div>{tax_country_cd}</div>
+                      </div>
+                    </div>
+                    <div className="flex-1 border-black border-t">
+                      <div className="p-2">
+                        {smallText("Tax and Legal Reference")}
+                        <div>{tax_ref}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     ))}
