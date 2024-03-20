@@ -13,6 +13,8 @@ const smallStrongText = (text: string): JSX.Element => (
   </p>
 );
 
+const parsedValue = (payload: any, identifier: string) => payload[identifier] !== null && payload[identifier] !== undefined ? payload[identifier] : ''
+
 const SingleValueField = ({ identifier, schema, payload, index }: {
   identifier: string,
   schema: any,
@@ -22,7 +24,7 @@ const SingleValueField = ({ identifier, schema, payload, index }: {
   return <div className="flex-1 border-black border-t border-r h-100% last:border-r-0" key={`document-row-${index}`}>
     <div className="p-2">
       {smallText(schema?.[identifier]?.title)}
-      <p style={{ wordBreak: "break-word" }}>{`${(payload as any)[identifier]}`}</p>
+      <p style={{ wordBreak: "break-word" }}>{parsedValue(payload, identifier)}</p>
     </div>
   </div>
 }
@@ -53,12 +55,17 @@ const MultiValueField = ({ identifier, schema, payload, index }: {
 
 const Spacer = () => <div className="h-4 border-black border-t bg-gray-100" />;
 
-const Indent = () => <div className="w-4 border-black border-r bg-gray-100" />;
+const indentSize = 4;
+const Indent = () => <div className={`border-black border-r bg-gray-100`}
+  style={{ width: `${indentSize}px` }}
+/>;
 
 const IndentedTable = ({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element => {
   return <div className="flex border-black border-t">
     <Indent />
-    <div className="flex-1">
+    <div className=""
+      style={{ width: `calc(100% - ${indentSize}px)` }}
+    >
       {children}
     </div>
   </div>
@@ -115,11 +122,13 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
             {issuing_party?.map((issuing_party_item, index) => {
               return <>
                 <SubTitle2 title={`Issuing Party #${index + 1}`} />
-                <div className="flex">
-                  {['name', 'address', 'country', 'contact_nm', 'contact_type', 'contact_details', 'identifying_code', 'code_provider', 'code_name', 'tax_ref_type', 'tax_country_cd', 'tax_ref']?.map((item, index) => (
-                    <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.issuing_party.items.properties} payload={issuing_party_item} />
-                  ))}
-                </div>
+                {[['name', 'address', 'country', 'contact_nm', 'contact_type', 'contact_details'], ['identifying_code', 'code_provider', 'code_name', 'tax_ref_type', 'tax_country_cd', 'tax_ref']].map((row, index) => (
+                  <div className="flex">
+                    {row?.map((item, index) => (
+                      <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.issuing_party.items.properties} payload={issuing_party_item} />
+                    ))}
+                  </div>
+                ))}
               </>
             })}
           </div>
@@ -254,14 +263,16 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                     return <>
                       <SubTitle3 title={`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.title}  #${index + 1}`} />
                       <div className="flex">
-                        <div className="flex-1 flex border-black border-r">
+                        <div className="flex-1 flex">
                           {/* 'shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit' */}
                           {['shipping_marks', 'equipment_ref', 'weight', 'weight_unit', 'volume', 'volume_unit']?.map((item, index) => (
                             <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties} payload={cargo_item} />
                           ))}
                         </div>
+                      </div>
 
-                        {/* Custom Reference */}
+                      {/* Custom Reference */}
+                      <div className="flex">
                         <div className="flex-1 flex flex-col border-black border-t">
                           <div className="p-2">
                             {smallStrongText(`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties.customs_references.title}`)}
@@ -420,7 +431,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                     </div>
                                   </div>
 
-                                  {/* 'inner_packaging', 'emergency_contact', 'limits' */}
+                                  {/* 'inner_packaging', 'emergency_contact' */}
                                   <div className="flex">
                                     {/* Inner Packagings */}
                                     <div className="flex-1 flex flex-col border-black border-t border-r">
@@ -451,7 +462,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                     </div>
 
                                     {/* Emergency Contact Details */}
-                                    <div className="flex-1 flex flex-col border-black border-t border-r">
+                                    <div className="flex-1 flex flex-col border-black border-t">
                                       <div className="p-2">
                                         {smallStrongText(`${EBL_DCSAJsonSchmea.properties
                                           .dcsa_ebl_document.items.properties
@@ -477,7 +488,10 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                         </div>
                                       })}
                                     </div>
+                                  </div>
 
+                                  {/* limits */}
+                                  <div className="flex">
                                     {/* Limits */}
                                     <div className="flex-1 flex flex-col border-black border-t">
                                       <div className="p-2">
@@ -534,7 +548,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                   ))}
                 </div>
 
-                {/* 'equipment', 'seals', 'references', 'customs_references' */}
+                {/* 'equipment', 'seals' */}
                 <div className="flex">
                   {/* equipment */}
                   <div className="flex-1 flex flex-col border-black border-t border-r">
@@ -559,7 +573,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                   </div>
 
                   {/* seals */}
-                  <div className="flex-1 flex flex-col border-black border-t border-r">
+                  <div className="flex-1 flex flex-col border-black border-t">
                     <div className="p-2">
                       {smallStrongText(`${EBL_DCSAJsonSchmea.properties
                         .dcsa_ebl_document.items.properties
@@ -579,7 +593,10 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                       </div>
                     })}
                   </div>
+                </div>
 
+                {/* 'references', 'customs_references' */}
+                <div className="flex">
                   {/* references */}
                   <div className="flex-1 flex flex-col border-black border-t border-r">
                     <div className="p-2">
@@ -630,29 +647,33 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                 </div>
 
                 {/* 'active_reefer' */}
-                <div className="flex">
+                <IndentedTable>
                   {/* active_reefer */}
-                  <div className="flex-1 flex flex-col border-black border-t">
-                    <div className="p-2">
-                      {smallStrongText(`${EBL_DCSAJsonSchmea.properties
-                        .dcsa_ebl_document.items.properties
-                        .utilized_transport_equipment.items.properties
-                        .active_reefer
-                        .title}`)}
-                    </div>
+                  <div className="flex-1 flex flex-col">
                     {utilized_transport_equipment_item?.active_reefer?.map((payload, index) => {
-                      return <div className="flex flex-1">
-                        {['temperature_setpoint', 'temperature_unit', 'o2_setpoint', 'co2_setpoint', 'humidity_setpoint', 'air_exchange_setpoint', 'air_exchange_unit', 'is_ventilation_open', 'is_drain_holes_open', 'is_bulb_mode', 'is_cold_treatment_required', 'is_controlled_atmosphere_required']?.map((item, index) => (
-                          <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties
+                      return <>
+                        <div className="p-2">
+                          {smallStrongText(`${EBL_DCSAJsonSchmea.properties
                             .dcsa_ebl_document.items.properties
                             .utilized_transport_equipment.items.properties
                             .active_reefer
-                            .items.properties} payload={payload} />
-                        ))}
-                      </div>
+                            .title} #${index + 1}`)}
+                        </div>
+                        {[['temperature_setpoint', 'temperature_unit', 'o2_setpoint', 'co2_setpoint', 'humidity_setpoint', 'air_exchange_setpoint'], ['air_exchange_unit', 'is_ventilation_open', 'is_drain_holes_open', 'is_bulb_mode', 'is_cold_treatment_required', 'is_controlled_atmosphere_required']].map((row, index) => {
+                          return <div className="flex flex-1">
+                            {row?.map((item, index) => (
+                              <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties
+                                .dcsa_ebl_document.items.properties
+                                .utilized_transport_equipment.items.properties
+                                .active_reefer
+                                .items.properties} payload={payload} />
+                            ))}
+                          </div>
+                        })}
+                      </>
                     })}
                   </div>
-                </div>
+                </IndentedTable>
               </>
             })}
           </div>
@@ -862,7 +883,7 @@ const Section1 = (document: EBL_DCSADocument): JSX.Element => {
     dcsa_ebl_seat: "",
   };
   return (
-    <div className="border-black border">
+    <div className="border-black border border-r-2">
       <div className="flex">
         <div className="w-1/2 border-black border">
           <div className="p-2 h-full flex justify-center items-center">
@@ -881,7 +902,7 @@ const Section1 = (document: EBL_DCSADocument): JSX.Element => {
                 </p>
               </div>
             </div>
-            <div className="w-1/3 border-black border">
+            <div className="w-1/3 border-black border border-r-0">
               <div className="p-2 border-black border-b-2">
                 Jurisdiction
                 <p>
@@ -907,7 +928,7 @@ export const EBL_DCSATemplate: FunctionComponent<TemplateProps<EBL_DCSASchema>> 
   const qrCodeUrl = false //documentData?.links?.self.href;
   return (
     <Wrapper data-testid="bill-of-lading-template">
-      <div className="min-w-[1000px]">
+      <div className="min-w-[700px]">
         <div className="mb-8">{Section1(documentData)}</div>
         <div className="text-center">
           <p>

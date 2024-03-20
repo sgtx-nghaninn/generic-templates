@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { EBL_DCSASampleV2 } from "../src/templates/EBL_DCSA/sampleV2";
+import { EBL_DCSASampleV3 } from "../src/templates/EBL_DCSA/sampleV3";
 import { BillOfLadingSampleV2 } from "../src/templates/BillOfLading/sampleV2";
 import { BillOfLadingSampleV3 } from "../src/templates/BillOfLading/sampleV3";
 import { BillOfLadingMaerskPilotSampleV2 } from "../src/templates/BillOfLadingMaerskPilot/sampleV2";
@@ -28,6 +30,8 @@ import "./main.css";
 ReactDOM.render(
   <App
     documents={[
+      { name: "Bill of Lading DCSA V2", document: EBL_DCSASampleV2 },
+      { name: "Bill of Lading DCSA V3", document: EBL_DCSASampleV3 },
       { name: "Bill of Lading V2", document: BillOfLadingSampleV2 },
       { name: "Bill of Lading V3", document: BillOfLadingSampleV3 },
       {
