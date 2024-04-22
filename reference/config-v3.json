@@ -1,5 +1,5 @@
 {
-  "network": "sepolia",
+  "network": "amoy",
   "wallet": {
     "type": "ENCRYPTED_JSON",
     "encryptedJson": "<WALLET>"

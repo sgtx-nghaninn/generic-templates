@@ -823,8 +823,8 @@ export const EBL_DCSAJsonSchmea: any = {
                 }
               },
               "required": [
-                "pol_location_type",
-                "pol_unlocation_cd"
+                "location_type",
+                "unlocation_cd"
               ]
             },
             "description": "<root><div><label>description</label>:<b>General purpose object to capture where the original Transport Document (Bill of Lading) will be issued.</b></div><div><label>businessTerm</label>:<b>Place of Issue</b></div><div><label>businessDefinition</label>:<b>General purpose object to capture where the original Transport Document (Bill of Lading) will be issued.</b></div><div><label>applicableStandardName</label>:<b>International</b></div><div><label>dataFormat</label>:<b>NA</b></div></root>",
@@ -2657,8 +2657,8 @@ export const EBL_DCSAJsonSchmea: any = {
                     "W3C",
                     "EPUI"
                   ],
-                  "example": "EPIU",
-                  "description": "<root><div><label>description</label>:<b>Describes the organisation that provides the party code. \\n \\n- EPUI:The party code is an EBL Platform User Identifier (that is, an identifier provided by a platform, used to transfer eBLs). EPIU should be combined with the codeListName, to identify the platform that issued the identifier. \\n- GLEIF: The party code is issued by Global Legal Entity Identifier Foundation (GLEIF). See https://www.gleif.org/en. The codeNameList (if omitted) defaults to LEI. \\n- W3C: The party code is issued by a standard created by World Wide Web Consortium (W3C). See https://www.w3.org/. The codeNameList (if omitted) defaults to DID.</b></div><div><label>businessTerm</label>:<b>Code List Provider</b></div><div><label>businessDefinition</label>:<b>Describes the organisation that provides the party code. \\n \\n- EPUI:The party code is an EBL Platform User Identifier (that is, an identifier provided by a platform, used to transfer eBLs). EPIU should be combined with the codeListName, to identify the platform that issued the identifier. \\n- GLEIF: The party code is issued by Global Legal Entity Identifier Foundation (GLEIF). See https://www.gleif.org/en. The codeNameList (if omitted) defaults to LEI. \\n- W3C: The party code is issued by a standard created by World Wide Web Consortium (W3C). See https://www.w3.org/. The codeNameList (if omitted) defaults to DID.</b></div><div><label>applicableStandardName</label>:<b>International</b></div><div><label>dataFormat</label>:<b>example: EPIU \\nEnum: [ GLEIF, W3C, EPUI ]</b></div></root>",
+                  "example": "EPUI",
+                  "description": "<root><div><label>description</label>:<b>Describes the organisation that provides the party code. \\n \\n- EPUI:The party code is an EBL Platform User Identifier (that is, an identifier provided by a platform, used to transfer eBLs). EPUI should be combined with the codeListName, to identify the platform that issued the identifier. \\n- GLEIF: The party code is issued by Global Legal Entity Identifier Foundation (GLEIF). See https://www.gleif.org/en. The codeNameList (if omitted) defaults to LEI. \\n- W3C: The party code is issued by a standard created by World Wide Web Consortium (W3C). See https://www.w3.org/. The codeNameList (if omitted) defaults to DID.</b></div><div><label>businessTerm</label>:<b>Code List Provider</b></div><div><label>businessDefinition</label>:<b>Describes the organisation that provides the party code. \\n \\n- EPUI:The party code is an EBL Platform User Identifier (that is, an identifier provided by a platform, used to transfer eBLs). EPUI should be combined with the codeListName, to identify the platform that issued the identifier. \\n- GLEIF: The party code is issued by Global Legal Entity Identifier Foundation (GLEIF). See https://www.gleif.org/en. The codeNameList (if omitted) defaults to LEI. \\n- W3C: The party code is issued by a standard created by World Wide Web Consortium (W3C). See https://www.w3.org/. The codeNameList (if omitted) defaults to DID.</b></div><div><label>applicableStandardName</label>:<b>International</b></div><div><label>dataFormat</label>:<b>example: EPUI \\nEnum: [ GLEIF, W3C, EPUI ]</b></div></root>",
                   "title": "Code List Provider",
                   "minLength": 1
                 },

@@ -5,7 +5,7 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
   $template: {
     type: v2.TemplateType.EmbeddedRenderer,
     name: "EBL_DCSA",
-    url: "http://localhost:3000",
+    "url": "https://master.dzfel3p4uihte.amplifyapp.com"
   },
   issuers: [
     {
@@ -758,12 +758,12 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
       "party_codes": [
         {
           "party_code": "529900T8BM49AURSDO55",
-          "code_provider": "EPIU",
+          "code_provider": "EPUI",
           "code_name": "Bolero 1"
         },
         {
           "party_code": "529900T8BM49AURSDO55",
-          "code_provider": "EPIU",
+          "code_provider": "EPUI",
           "code_name": "Bolero 2"
         }
       ]
@@ -777,12 +777,12 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
       "party_codes": [
         {
           "party_code": "529900T8BM49AURSDO55",
-          "code_provider": "EPIU",
+          "code_provider": "EPUI",
           "code_name": "Bolera 1"
         },
         {
           "party_code": "529900T8BM49AURSDO55",
-          "code_provider": "EPIU",
+          "code_provider": "EPUI",
           "code_name": "Bolera 2"
         }
       ]
@@ -797,6 +797,5 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
       "data": "string",
       "type": "string"
     }
-  ],
-  "verified": "NOT APPLICABLE"
+  ]
 }

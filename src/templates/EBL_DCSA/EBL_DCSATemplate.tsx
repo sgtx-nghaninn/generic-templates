@@ -13,7 +13,7 @@ const smallStrongText = (text: string): JSX.Element => (
   </p>
 );
 
-const parsedValue = (payload: any, identifier: string) => payload[identifier] !== null && payload[identifier] !== undefined ? payload[identifier] : ''
+const parsedValue = (payload: any, identifier: string) => payload[identifier] !== null && payload[identifier] !== undefined ? `${payload[identifier]}` : ''
 
 const SingleValueField = ({ identifier, schema, payload, index }: {
   identifier: string,
@@ -100,9 +100,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
         <SubTitle1 title={`Document #${index + 1}`} />
 
         <div>
-          {[['bol_ref', 'shipping_ref', 'status', 'shipped_onboard', 'freight_payment_cd', 'origin_charges_cd', 'destination_charges_cd', 'to_order'],
-          ['shipped_onboard_date', 'terms_and_conditions', 'origin_receipt_type', 'destination_delivery_type', 'origin_cargo_movement_type', 'destination_cargo_movement_type', 'issue_date', 'received_shipment_date'],
-          ['service_contract_ref', 'contract_quotation_ref', 'declared_value', 'declared_currency', 'carrier_cd', 'carrier_cd_provider', 'carrier_clause']]?.map((row, index) => (
+          {[['bol_ref', 'shipping_ref', 'status', 'shipped_onboard', 'freight_payment_cd', 'origin_charges_cd'], ['destination_charges_cd', 'to_order', 'shipped_onboard_date', 'terms_and_conditions', 'origin_receipt_type', 'destination_delivery_type'], ['origin_cargo_movement_type', 'destination_cargo_movement_type', 'issue_date', 'received_shipment_date', 'service_contract_ref', 'contract_quotation_ref'], ['declared_value', 'declared_currency', 'carrier_cd', 'carrier_cd_provider', 'carrier_clause']]?.map((row, index) => (
             <div className="flex" key={index}>
               {row?.map((item, index) => (
                 <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties} payload={document} />
@@ -139,7 +137,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
             {transports?.map((transports_item, index) => {
               return <>
                 <SubTitle2 title={`Transports Details #${index + 1}`} />
-                {[['planned_arrival_date', 'planned_departure_date', 'pre_carriage', 'on_carriage', 'receipt_location_nm', 'receipt_location_type', 'receipt_unlocation_cd', 'receipt_facility_cd', 'receipt_facility_cd_provider'], ['pol_location_nm', 'pol_location_type', 'pol_unlocation_cd', 'delivery_location_nm', 'delivery_location_type', 'delivery_unlocation_cd', 'delivery_facility_cd', 'delivery_facility_cd_provider', 'pod_location_nm'], ['pod_location_type', 'pod_unlocation_cd', 'routing_location_nm', 'routing_location_type', 'routing_unlocation_cd', 'routing_facility_cd', 'routing_facility_cd_provider', 'vessel_nm', 'voy_no', 'universal_voy_no']]?.map((row) => (
+                {[['planned_arrival_date', 'planned_departure_date', 'pre_carriage', 'on_carriage', 'receipt_location_nm', 'receipt_location_type'], ['receipt_unlocation_cd', 'receipt_facility_cd', 'receipt_facility_cd_provider', 'pol_location_nm', 'pol_location_type', 'pol_unlocation_cd'], ['delivery_location_nm', 'delivery_location_type', 'delivery_unlocation_cd', 'delivery_facility_cd', 'delivery_facility_cd_provider', 'pod_location_nm'], ['pod_location_type', 'pod_unlocation_cd', 'routing_location_nm', 'routing_location_type', 'routing_unlocation_cd', 'routing_facility_cd'], ['routing_facility_cd_provider', 'vessel_nm', 'voy_no', 'universal_voy_no']]?.map((row) => (
                   <div className="flex">
                     {row?.map((item, index) => (
                       <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.transports.items.properties} payload={transports_item} />
@@ -169,7 +167,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
           <Spacer />
           <div className="flex">
             {/* Place of Issue */}
-            <div className="flex-1 flex flex-col border-black border-t border-r">
+            <div className="flex-1 flex flex-col border-black border-t">
               <div className="p-2">
                 {smallStrongText(`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.issue_place.title}`)}
               </div>
@@ -181,9 +179,11 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                 </div>
               })}
             </div>
+          </div>
 
+          <div className="flex">
             {/* Invoice Payable Location */}
-            <div className="flex-1 flex flex-col border-black border-t border-r">
+            <div className="flex-1 flex flex-col border-black border-t">
               <div className="p-2">
                 {smallStrongText(`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.invoice_payable_at.title}`)}
               </div>
@@ -195,7 +195,9 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                 </div>
               })}
             </div>
+          </div>
 
+          <div className="flex">
             {/* Party Contact Details */}
             <div className="flex-1 flex flex-col border-black border-t">
               <div className="p-2">
@@ -222,6 +224,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                     <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties} payload={consignment_item} />
                   ))}
                 </div>
+
                 <div className="flex">
                   {/* HS Code */}
                   <div className="flex-1 border-black border-r">
@@ -229,7 +232,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                   </div>
 
                   {/* Reference */}
-                  <div className="flex-1 flex flex-col border-black border-t border-r">
+                  <div className="flex-1 flex flex-col border-black border-t">
                     <div className="p-2">
                       {smallStrongText(`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.references.title}`)}
                     </div>
@@ -241,7 +244,9 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                       </div>
                     })}
                   </div>
+                </div>
 
+                <div className="flex">
                   {/* Custom Reference */}
                   <div className="flex-1 flex flex-col border-black border-t">
                     <div className="p-2">
@@ -304,7 +309,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                               {outer_packaging_item?.dangerous_goods?.map((dangerous_goods_item, index) => {
                                 return <>
                                   <SubTitle3 title={`${EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties.outer_packaging.items.properties.dangerous_goods.title} #${index + 1}`} italic />
-                                  {[['code_variant_list', 'proper_shipping_nm', 'technical_nm', 'imo_class', 'subsidiary_risk1', 'subsidiary_risk2', 'is_marine_pollutant', 'packing_group'], ['is_limited_quantity', 'is_excepted_quantity', 'is_salvage_packings', 'is_empty_uncleaned_residue', 'is_waste', 'is_hot', 'is_competent_authority_approval_provided'], ['competent_authority_approval', 'ems_no', 'end_of_holding_time', 'fumigation_dt', 'is_reportable_quantity', 'inhalation_zone', 'reference_standard_type', 'reference_number']].map((row, index) => (
+                                  {[['code_variant_list', 'proper_shipping_nm', 'technical_nm', 'imo_class', 'subsidiary_risk1', 'subsidiary_risk2'], ['is_marine_pollutant', 'packing_group', 'is_limited_quantity', 'is_excepted_quantity', 'is_salvage_packings', 'is_empty_uncleaned_residue'], ['is_waste', 'is_hot', 'is_competent_authority_approval_provided', 'competent_authority_approval', 'ems_no', 'end_of_holding_time'], ['fumigation_dt', 'is_reportable_quantity', 'inhalation_zone', 'reference_standard_type', 'reference_number']].map((row, index) => (
                                     <div className="flex" key={index}>
                                       {row?.map((item, index) => (
                                         <SingleValueField identifier={item} schema={EBL_DCSAJsonSchmea.properties.dcsa_ebl_document.items.properties.consignment.items.properties.cargo_items.items.properties.outer_packaging.items.properties.dangerous_goods.items.properties} payload={dangerous_goods_item} />
@@ -312,7 +317,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                     </div>
                                   ))}
 
-                                  {/* 'gross_weight', 'net_weight', 'net_explosive_content', 'volume' */}
+                                  {/* 'gross_weight', 'net_weight' */}
                                   <div className="flex">
                                     {/* Gross Weight */}
                                     <div className="flex-1 flex flex-col border-black border-t border-r">
@@ -343,7 +348,7 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                     </div>
 
                                     {/* Net Weight */}
-                                    <div className="flex-1 flex flex-col border-black border-t border-r">
+                                    <div className="flex-1 flex flex-col border-black border-t">
                                       <div className="p-2">
                                         {smallStrongText(`${EBL_DCSAJsonSchmea.properties
                                           .dcsa_ebl_document.items.properties
@@ -369,7 +374,10 @@ const Section3 = (document: EBL_DCSADocument): JSX.Element => {
                                         </div>
                                       })}
                                     </div>
+                                  </div>
 
+                                  {/* 'net_explosive_content', 'volume' */}
+                                  <div className="flex">
                                     {/* Net Explosive Content */}
                                     <div className="flex-1 flex flex-col border-black border-t border-r">
                                       <div className="p-2">
@@ -885,12 +893,12 @@ const Section1 = (document: EBL_DCSADocument): JSX.Element => {
   return (
     <div className="border-black border border-r-2">
       <div className="flex">
-        <div className="w-1/2 border-black border">
+        <div className="w-1/3 border-black border">
           <div className="p-2 h-full flex justify-center items-center">
             <img data-testid="logo" style={{ width: "150px" }} src={logo} />
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-2/3">
           <div className="flex">
             <div className="w-2/3 border-black border">
               <div className="p-2">
@@ -928,7 +936,7 @@ export const EBL_DCSATemplate: FunctionComponent<TemplateProps<EBL_DCSASchema>> 
   const qrCodeUrl = false //documentData?.links?.self.href;
   return (
     <Wrapper data-testid="bill-of-lading-template">
-      <div className="min-w-[700px]">
+      <div className="w-[600px] mx-auto">
         <div className="mb-8">{Section1(documentData)}</div>
         <div className="text-center">
           <p>

@@ -90,9 +90,8 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                 <div
                   key={index}
                   data-testid={`${d.name}`}
-                  className={`bg-sky-50 p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${
-                    document === d ? "active" : ""
-                  }`}
+                  className={`bg-sky-50 p-2 border-t-4 border-sky-500 cursor-pointer hover:bg-sky-100 document ${document === d ? "active" : ""
+                    }`}
                   onClick={() => setDocument(d)}
                 >
                   {d.name}
@@ -107,9 +106,8 @@ export const App: React.FunctionComponent<AppProps> = ({ documents }): React.Rea
                   {templates.map((template) => (
                     <li
                       key={template.id}
-                      className={`inline-block p-2 border border-b-0 ${
-                        selectedTemplate === template.id ? "text-sky-500" : ""
-                      }`}
+                      className={`inline-block p-2 border border-b-0 ${selectedTemplate === template.id ? "text-sky-500" : ""
+                        }`}
                       onClick={() => setSelectedTemplate(template.id)}
                     >
                       <a href="#">{template.label}</a>

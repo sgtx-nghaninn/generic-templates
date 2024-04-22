@@ -16,8 +16,8 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
   openAttestationMetadata: {
     template: {
       type: v3.TemplateType.EmbeddedRenderer,
-      name: "BILL_OF_LADING",
-      url: "https://generic-templates.tradetrust.io",
+      name: "EBL_DCSA",
+      "url": "https://master.dzfel3p4uihte.amplifyapp.com"
     },
     proof: {
       type: v3.ProofType.OpenAttestationProofMethod,
@@ -33,7 +33,7 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
     "dcsa_ebl_document": [
       {
         "bol_ref": "ibI.4YnwqOfRe5@ZR1[&",
-        "shipping_ref": "+q<9$nO3|c.~oCO`<\\'c,nDj3dt9(#!A-8W>1/yd2!L|mC!Gcwr1\\Vy0v?+h1e+                                     ",
+        "shipping_ref": "+q<9$nO3|c.~oCO`<\\'c,nDj3dt9(#!A-8W>1/yd2!L|mC!Gcwr1\\Vy0v?+h1e+",
         "status": "string",
         "shipped_onboard": true,
         "freight_payment_cd": "PRE",
@@ -61,7 +61,7 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
         "issue_date": "2024-02-29",
         "received_shipment_date": "2024-02-29",
         "service_contract_ref": "string",
-        "contract_quotation_ref": ")ms2X~1]P                          ",
+        "contract_quotation_ref": ")ms2X~1]P",
         "declared_value": 0,
         "declared_currency": "QCE",
         "carrier_cd": "_48d",
@@ -389,7 +389,7 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
         "party_codes": [
           {
             "party_code": "529900T8BM49AURSDO55",
-            "code_provider": "EPIU",
+            "code_provider": "EPUI",
             "code_name": "Bolero"
           }
         ]
@@ -403,7 +403,6 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
         "file_content": "string"
       }
     ],
-    "verified": "NOT APPLICABLE"
   },
   attachments: [
     {
