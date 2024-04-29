@@ -155,6 +155,7 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
           "volume_unit": "MTQ",
           "goods_description": "300 boxes of blue shoes size 47",
           "hscode": [
+            "851713",
             "851713"
           ],
           "references": [
@@ -519,6 +520,7 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
           "volume_unit": "MTQ",
           "goods_description": "300 boxes of blue shoes size 47",
           "hscode": [
+            "851713",
             "851713"
           ],
           "references": [

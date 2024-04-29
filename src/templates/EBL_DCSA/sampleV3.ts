@@ -147,7 +147,7 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
             "volume": 50,
             "volume_unit": "MTQ",
             "goods_description": "Electronics and Machinery",
-            "hscode": ["854321"],
+            "hscode": ["854321", "854321"],
             "references": [
               {
                 "type": "CUS",
