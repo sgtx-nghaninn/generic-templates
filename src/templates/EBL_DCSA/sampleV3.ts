@@ -32,152 +32,142 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
   credentialSubject: {
     "dcsa_ebl_document": [
       {
-        "bol_ref": "ibI.4YnwqOfRe5@ZR1[&",
-        "shipping_ref": "+q<9$nO3|c.~oCO`<\\'c,nDj3dt9(#!A-8W>1/yd2!L|mC!Gcwr1\\Vy0v?+h1e+",
-        "status": "string",
+        "bol_ref": "SINSGP1234567890",
+        "shipping_ref": "REF2024042101",
+        "status": "ISSUED",
         "shipped_onboard": true,
         "freight_payment_cd": "PRE",
         "origin_charges_cd": "PRE",
-        "destination_charges_cd": "PRE",
+        "destination_charges_cd": "COL",
         "to_order": true,
-        "place_of_receipt": [
-          "string"
-        ],
-        "port_of_load": [
-          "string"
-        ],
-        "port_of_discharge": [
-          "string"
-        ],
-        "place_of_delivery": [
-          "string"
-        ],
-        "shipped_onboard_date": "2024-02-29",
-        "terms_and_conditions": "string",
+        "place_of_receipt": ["Singapore Port"],
+        "port_of_load": ["Singapore Port"],
+        "port_of_discharge": ["Rotterdam Port"],
+        "place_of_delivery": ["Antwerp"],
+        "shipped_onboard_date": "2024-04-30",
+        "terms_and_conditions": "All goods are transported under the standard shipping terms and conditions...",
         "origin_receipt_type": "CY",
         "destination_delivery_type": "CY",
-        "origin_cargo_movement_type": "str",
-        "destination_cargo_movement_type": "str",
-        "issue_date": "2024-02-29",
-        "received_shipment_date": "2024-02-29",
-        "service_contract_ref": "string",
-        "contract_quotation_ref": ")ms2X~1]P",
-        "declared_value": 0,
-        "declared_currency": "QCE",
-        "carrier_cd": "_48d",
+        "origin_cargo_movement_type": "FCL",
+        "destination_cargo_movement_type": "FCL",
+        "issue_date": "2024-04-21",
+        "received_shipment_date": "2024-04-20",
+        "service_contract_ref": "SC2024SGPNL",
+        "contract_quotation_ref": "CQR2024SGPNL001",
+        "declared_value": 50000,
+        "declared_currency": "USD",
+        "carrier_cd": "MAEU",
         "carrier_cd_provider": "SMDG",
         "issuing_party": [
           {
-            "name": "Asseco Denmark",
-            "address": "Henrik",
-            "country": "The Netherlands",
-            "contact_nm": "Henrik",
+            "name": "Maersk Line",
+            "address": "50 Esplanaden, Copenhagen 1263, Denmark",
+            "country": "DK",
+            "contact_nm": "John Doe",
             "contact_type": "Phone",
-            "contact_details": "string",
-            "identifying_code": "MSK",
+            "contact_details": "+45 3363 3363",
+            "identifying_code": "MAEU",
             "code_provider": "SMDG",
             "code_name": "LCL",
-            "tax_ref_type": "PAN",
+            "tax_ref_type": "GSTIN",
             "tax_country_cd": "DK",
-            "tax_ref": "AAAAA0000A"
+            "tax_ref": "DK99999999"
           }
         ],
-        "carrier_clause": "It is not allowed to…",
+        "carrier_clause": "Lithium batteries are forbidden for transport.",
         "transports": [
           {
-            "planned_arrival_date": "2024-02-29",
-            "planned_departure_date": "2024-02-29",
-            "pre_carriage": "RAIL",
-            "on_carriage": "RAIL",
-            "receipt_location_nm": "Port of Amsterdam",
+            "planned_arrival_date": "2024-05-10",
+            "planned_departure_date": "2024-04-30",
+            "pre_carriage": "TRUCK",
+            "on_carriage": "TRUCK",
+            "receipt_location_nm": "Singapore Warehouse #5",
             "receipt_location_type": "FACI",
-            "receipt_unlocation_cd": "FRPAR",
-            "receipt_facility_cd": "ADT",
+            "receipt_unlocation_cd": "SGSIN",
+            "receipt_facility_cd": "SGW5",
             "receipt_facility_cd_provider": "SMDG",
-            "pol_location_nm": "Port of Amsterdam",
-            "pol_location_type": "UNLO",
-            "pol_unlocation_cd": "FRPAR",
-            "delivery_location_nm": "Port of Amsterdam",
+            "pol_location_nm": "Singapore Port",
+            "pol_location_type": "PORT",
+            "pol_unlocation_cd": "SGSIN",
+            "delivery_location_nm": "Rotterdam Warehouse #2",
             "delivery_location_type": "FACI",
-            "delivery_unlocation_cd": "FRPAR",
-            "delivery_facility_cd": "ADT",
+            "delivery_unlocation_cd": "NLRTM",
+            "delivery_facility_cd": "NLW2",
             "delivery_facility_cd_provider": "SMDG",
-            "pod_location_nm": "Port of Amsterdam",
-            "pod_location_type": "UNLO",
-            "pod_unlocation_cd": "FRPAR",
-            "routing_location_nm": "Port of Amsterdam",
-            "routing_location_type": "FACI",
-            "routing_unlocation_cd": "FRPAR",
-            "routing_facility_cd": "ADT",
+            "pod_location_nm": "Rotterdam Port",
+            "pod_location_type": "PORT",
+            "pod_unlocation_cd": "NLRTM",
+            "routing_location_nm": "Via Suez Canal",
+            "routing_location_type": "ROUTE",
+            "routing_unlocation_cd": "EGSUZ",
+            "routing_facility_cd": "ROUTE",
             "routing_facility_cd_provider": "SMDG",
-            "vessel_nm": "King of the Seas",
-            "voy_no": "2103S",
+            "vessel_nm": "Maersk Edinburgh",
+            "voy_no": "ME1234N",
             "universal_voy_no": "2103N"
           }
         ],
         "charges": [
           {
-            "name": "Documentation fee - Destination",
-            "currency_amount": 1012.12,
-            "currency_cd": "DKK",
+            "name": "Freight Charge",
+            "currency_amount": 3200.50,
+            "currency_cd": "USD",
             "payment_term": "PRE",
-            "calculation_basis": "Per day",
-            "unit_price": 3456.6,
-            "quantity": 34.4
+            "calculation_basis": "Per Container",
+            "unit_price": 1600.25,
+            "quantity": 2
           }
         ],
         "issue_place": [
           {
-            "location_nm": "Port of Amsterdam",
-            "location_type": "UNLO",
-            "unlocation_cd": "FRPAR"
+            "location_nm": "Singapore Port",
+            "location_type": "PORT",
+            "unlocation_cd": "SGSIN"
           }
         ],
         "invoice_payable_at": [
           {
-            "location_nm": "Port of Amsterdam",
-            "location_type": "UNLO",
-            "unlocation_cd": "FRPAR"
+            "location_nm": "Rotterdam Port",
+            "location_type": "PORT",
+            "unlocation_cd": "NLRTM"
           }
         ],
         "contact_details": [
           {
-            "contact_nm": "Henrik",
+            "contact_nm": "John Doe",
             "contact_type": "Phone",
-            "contact_value": "string"
+            "contact_value": "+45 3363 3363"
           }
         ],
         "consignment": [
           {
-            "booking_ref": "ABC709951",
-            "weight": 13000.3,
+            "booking_ref": "SGRT2024042101",
+            "weight": 25000,
             "weight_unit": "KGM",
-            "volume": 12,
+            "volume": 50,
             "volume_unit": "MTQ",
-            "goods_description": "300 boxes of blue shoes size 47",
-            "hscode": [
-              "851713"
-            ],
+            "goods_description": "Electronics and Machinery",
+            "hscode": ["854321"],
             "references": [
               {
-                "type": "FF",
-                "value": "HHL00103004"
+                "type": "CUS",
+                "value": "CUST2024SG"
               }
             ],
             "custom_references": [
               {
-                "type": "ACID",
-                "country_cd": "DK",
-                "value": "4988470982020120000"
+                "type": "EXP",
+                "country_cd": "SG",
+                "value": "EXP20240421"
               }
             ],
             "cargo_items": [
               {
-                "shipping_marks": "Made in China",
-                "equipment_ref": "APZU4812090",
-                "weight": 13000.3,
+                "shipping_marks": "Fragile - Handle with Care",
+                "equipment_ref": "MRKU2844389",
+                "weight": 25000,
                 "weight_unit": "KGM",
-                "volume": 12,
+                "volume": 50,
                 "volume_unit": "MTQ",
                 "outer_packaging": [
                   {
@@ -281,15 +271,15 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
           {
             "equipment": [
               {
-                "equipment_ref": "APZU4812090",
-                "iso_equipment_cd": "22GP",
-                "tare_weight": 4800,
+                "equipment_ref": "MRKU2844389",
+                "iso_equipment_cd": "45G1",
+                "tare_weight": 3800,
                 "weight_unit": "KGM"
               }
             ],
-            "cargo_gross_weight": 12000,
+            "cargo_gross_weight": 28800,
             "cargo_gross_weight_unit": "KGM",
-            "cargo_gross_volume": 120,
+            "cargo_gross_volume": 60,
             "cargo_gross_volume_unit": "MTQ",
             "is_shipper_owned": true,
             "is_non_operating_reefer": true,
@@ -311,7 +301,7 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
             ],
             "seals": [
               {
-                "seal_number": "string",
+                "seal_number": "123456",
                 "seal_source": "CUS",
                 "seal_type": "WIR"
               }
@@ -333,27 +323,27 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
         ],
         "references": [
           {
-            "type": "FF",
-            "value": "HHL00103004"
+            "type": "BL",
+            "value": "BL20240421SGNL"
           }
         ],
         "customs_references": [
           {
-            "type": "ACID",
-            "country_cd": "DK",
-            "value": "4988470982020120000"
+            "type": "IMP",
+            "country_cd": "NL",
+            "value": "IMP20240422"
           }
         ],
         "document_party": [
           {
             "party": [
               {
-                "name": "Asseco Denmark",
-                "address": "Henrik",
-                "address_country": "The Netherlands",
-                "contact_nm": "Henrik",
-                "contact_type": "Phone",
-                "contact_value": "string",
+                "name": "Global Freight Solutions",
+                "address": "1 Fullerton Road, Singapore 049213",
+                "address_country": "SG",
+                "contact_nm": "Lisa Tan",
+                "contact_type": "Email",
+                "contact_value": "lisa.tan@gfsolutions.com",
                 "identifying_code": [
                   {
                     "party_cd": "MSK",
@@ -370,10 +360,8 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
                 ]
               }
             ],
-            "party_function": "DDS",
-            "displayed_address": [
-              "string"
-            ],
+            "party_function": "NVO",
+            "displayed_address": ["1 Fullerton Road, Singapore 049213"],
             "notified": true
           }
         ]
@@ -381,28 +369,28 @@ export const EBL_DCSASampleV3: EBL_DCSASchemaV3 = {
     ],
     "dcsa_ebl_issue_to": [
       {
-        "platform_nm": "BOLE",
+        "platform_nm": "TTST",
         "legal_nm": "Digital Container Shipping Association",
-        "registration_no": "74567837",
-        "registration_loc": "NL",
-        "tax_ref": "NL859951480B01",
+        "registration_no": "SG2024TT",
+        "registration_loc": "SG",
+        "tax_ref": "SG99999999",
         "party_codes": [
           {
             "party_code": "529900T8BM49AURSDO55",
-            "code_provider": "EPUI",
-            "code_name": "Bolero"
+            "code_provider": "GLEIF",
+            "code_name": "Legal Entity Identifier"
           }
         ]
       }
     ],
-    "dcsa_ebl_jurisdiction": "string",
-    "dcsa_ebl_seat": "string",
+    "dcsa_ebl_jurisdiction": "Singapore",
+    "dcsa_ebl_seat": "Singapore",
     "attachments": [
       {
-        "filename": "string",
-        "file_content": "string"
+        "filename": "Invoice20240421.pdf",
+        "file_content": "base64EncodedString=="
       }
-    ],
+    ]
   },
   attachments: [
     {

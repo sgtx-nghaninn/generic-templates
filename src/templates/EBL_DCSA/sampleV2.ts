@@ -29,7 +29,6 @@ export const EBL_DCSASampleV2: EBL_DCSASchemaV2 = {
       "destination_charges_cd": "PRE",
       "to_order": true,
       "place_of_receipt": [
-        "string1"
       ],
       "port_of_load": [
         "string1",
